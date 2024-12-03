@@ -127,6 +127,23 @@ doc/api/
 .flutter-plugins
 .flutter-plugins-dependencies
 
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.idea/
+android/local.properties
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+*.iml
+
+# IDE files
+*.vscode/
+*.DS_Store
+
+
 ### Dart Patch ###
 # dotenv environment variables file
 .env
