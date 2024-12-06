@@ -1,40 +1,30 @@
-import 'package:bases_web/services/navigation_service.dart';
-import 'package:bases_web/ui/shared/custom_flat_button.dart';
+import 'package:bases_web/locator.dart';
+import 'package:bases_web/router/route_generator.dart';
+import 'package:bases_web/ui/layout/main_layout_page.dart';
 import 'package:flutter/material.dart';
+import 'package:bases_web/services/navigation_service.dart';
 
-class CustomAppMenu extends StatelessWidget {
-  const CustomAppMenu({super.key});
+void main() {
+  setupLocator();
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    print('AppBar Creado');
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      width: double.infinity,
-      child: Row(
-        children: [
-          CustomFlatButton(
-            text: 'Contador Stateful',
-            //onPressed: () => Navigator.popAndPushNamed(context, '/stateful'),
-            onPressed: () => navigationService.navigateTo('/stateful'),
-            color: Colors.black,
-          ),
-          SizedBox(width: 10),
-          CustomFlatButton(
-            text: 'Contador Provider',
-            onPressed: () => navigationService.navigateTo('/provider'),
-            //onPressed: () => Navigator.popAndPushNamed(context, '/provider'),
-            color: Colors.black,
-          ),
-          SizedBox(width: 10),
-          CustomFlatButton(
-            text: 'Otra página',
-            onPressed: () => navigationService.navigateTo('/abc123'),
-            //onPressed: () => Navigator.popAndPushNamed(context, '/page404'),
-            color: Colors.black,
-          ),
-        ],
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'RutasApp',
+      initialRoute: '/stateful',
+      onGenerateRoute: RouteGenerator.generateRoute,
+      navigatorKey: locator<NavigationService>().navigatorKey,
+      builder: (_, child) {
+        return MainLayoutPage(
+          child: child ?? Container(),
+        );
+      },
     );
   }
 }
