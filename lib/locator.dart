@@ -4,5 +4,5 @@ import 'package:bases_web/services/navigation_service.dart';
 GetIt locator = GetIt.instance;
 
 void setupLocator() {
-  locator.registerSingleton(() => NavigationService());
+  locator.registerLazySingleton(() => NavigationService());
 }
